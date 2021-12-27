@@ -1,5 +1,4 @@
 package com.sdp3.homestay.entity;
-import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;

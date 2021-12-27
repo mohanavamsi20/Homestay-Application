@@ -3,7 +3,6 @@ package com.sdp3.homestay.services;
 import com.sdp3.homestay.entity.User;
 import com.sdp3.homestay.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
