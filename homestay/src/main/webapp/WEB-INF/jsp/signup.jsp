@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
@@ -29,6 +31,37 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+    <script>
+      var check = function() {
+        if (document.getElementById('password').value ==
+          document.getElementById('cnfpassword').value) {
+          document.getElementById('message').style.color = 'green';
+          document.getElementById('message').innerHTML = 'matching';
+        } else {
+          document.getElementById('message').style.color = 'red';
+          document.getElementById('message').innerHTML = 'not matching';
+        }
+      }
+    </script>
+    <script>
+      $(function() {
+      $("#cnfpassword").blur(function() {
+        var user_pass = $("#password").val();
+        var confirm_user_pass = $("#cnfpassword").val();
+        var enter = $("#enter");
+
+        if (user_pass.length == 0) {
+          enter.prop('disabled', true)
+        } 
+        else if (user_pass == confirm_user_pass) {
+          enter.prop('disabled', false)
+        } 
+        else {
+          enter.prop('disabled', true)
+        }
+      });
+    });
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -69,8 +102,12 @@
 	        <div class="row block-6">
 	          <div class="col-md-6 order-md-last d-flex" style="left:380px">
 	            <form method="POST" action="/signuppage" class="bg-white p-5 contact-form">
+                <c:if test="${not empty errorMsg}">
+                  <div class="alert alert-danger" role="alert">${errorMsg}</div>
+                </c:if>
 	              <div class="form-group">
 	                <input type="text" name="username" class="form-control" placeholder="Enter Username" required>
+                  <p> Eg: johnlennon209</p>
 	              </div>
 	              <div class="form-group">
 	                <input type="text" name="name" class="form-control" placeholder="Enter Name" required>
@@ -79,16 +116,17 @@
 	                <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
 	              </div>
 	              <div class="form-group">
-	                <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
+	                <input type="password" name="password" id="password" onkeyup='check();' class="form-control" placeholder="Enter Password" required>
 	              </div>
 	              <div class="form-group">
-	                <input type="password" name="cnfpassword" class="form-control" placeholder="Confirm Password" required>
+	                <input type="password" name="cnfpassword" id="cnfpassword" onkeyup='check();' class="form-control" placeholder="Confirm Password" required>
+                   <span id='message'></span>
 	              </div>
 	              <div class="form-group">
-	                <input type="number" name="phone" class="form-control" placeholder="Phone" required>
+	                <input type="number" name="phone" class="form-control" placeholder="Enter Phone Number" required>
 	              </div>
 	              <div class="form-group">
-	                <input type="submit" value="SIGNUP" class="btn btn-primary py-3 px-5">
+	                <input id="enter" disabled="true" type="submit" value="SIGNUP" class="btn btn-primary py-3 px-5">
 	              </div>
 	              <p>Already have and account? <a href="/loginpage">click here</a></p>
 	            </form>

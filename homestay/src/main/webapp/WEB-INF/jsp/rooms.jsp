@@ -1,20 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+         pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>LOGIN</title>
-<meta charset="utf-8">
+    <meta charset="ISO-8859-1">
+    <title>ROOMS</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i" rel="stylesheet">
 
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
-    
+
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
@@ -26,71 +26,52 @@
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="css/jquery.timepicker.css">
 
-    
+
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="/">Homestay</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
-
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="/rooms" class="nav-link">Rooms</a></li>
-	          <li class="nav-item"><a href="#" class="nav-link">Restaurant</a></li>
-	          <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="/loginpage" class="nav-link">Login</a></li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
-    <!-- END nav -->
-		<div class="hero-wrap" style="background-image: url('images/bg_1.jpg');">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
-          <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
-          	<div class="text">
-	            <p class="breadcrumbs mb-2"><span class="mr-2"><a href="/">Home</a></span> <span>Login</span></p>
-	            <h1 class="mb-4 bread">LOGIN</h1>
-            </div>
-          </div>
+    <div class="container">
+        <a class="navbar-brand" href="/">Homestay</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+        <form method="POST" id="myform" action="/logout"></form>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="/rooms" class="nav-link">Rooms</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Restaurant</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+                <% if(session.getAttribute("username")!=null){%>
+                    <li class="nav-item active"><a href="/profile" class="nav-link">Profile</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="document.getElementById('myform').submit()" >Logout</a>
+                    </li>
+                <%}else{%>
+                    <li class="nav-item"><a href="/loginpage" class="nav-link">Login</a></li>
+                <%}%>
+            </ul>
         </div>
-      </div>
     </div>
-
-		<section class="ftco-section contact-section bg-light">
-	        <div class="row block-6">
-	          <div class="col-md-6 order-md-last d-flex" style="left:380px">
-	            <form method="POST" action="/loginpage" class="bg-white p-5 contact-form">
-                <c:if test="${not empty errorMsg}">
-                  <div class="alert alert-danger" role="alert">${errorMsg}</div>
-                </c:if>
-                <c:if test="${not empty successMsg}">
-                  <div class="alert alert-success" role="alert">${successMsg}</div>
-                </c:if>
-	              <div class="form-group">
-	                <input type="text" name="username" class="form-control" placeholder="Username" required>
-	              </div>
-	              <div class="form-group">
-	                <input type="password" name="password" class="form-control" placeholder="Password" required>
-	              </div>
-	              <div class="form-group">
-	                <input type="submit" value="LOGIN" class="btn btn-primary py-3 px-5">
-	              </div>
-	              <p>Don't have an account? <a href="/signuppage">click here</a></p>
-	            </form>
-	          </div>
-	        </div>
-    	</section>
-
-    <footer class="ftco-footer ftco-bg-dark ftco-section">
+</nav>
+<!-- END nav -->
+<div class="hero-wrap" style="background-image: url('images/bg_1.jpg');">
+    <div class="overlay"></div>
+    <div class="container">
+    <div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
+        <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
+        <div class="text">
+            <p class="breadcrumbs mb-2"><span class="mr-2"><a href="/">Home</a></span> <span>Rooms</span></p>
+            <h1 class="mb-4 bread">ROOMS</h1>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+<footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md">

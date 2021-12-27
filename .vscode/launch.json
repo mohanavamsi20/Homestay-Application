@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-HomestayApplication<homestay>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.sdp3.homestay.HomestayApplication",
+            "projectName": "homestay",
+            "args": ""
+        }
+    ]
+}

@@ -41,14 +41,14 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="rooms.html" class="nav-link">Rooms</a></li>
-	          <li class="nav-item"><a href="restaurant.html" class="nav-link">Restaurant</a></li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+	          <li class="nav-item"><a href="/rooms" class="nav-link">Rooms</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Restaurant</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
 	          <% if(session.getAttribute("username")!=null){%>
-	          		<li class="nav-item">
-	          			<a class="nav-link" href="#" onclick="document.getElementById('myform').submit()" >Logout</a>
-	          		</li>
+				<li class="nav-item"><a href="/profile" class="nav-link">Profile</a></li>
+				<li class="nav-item">
+					<a class="nav-link" href="#" onclick="document.getElementById('myform').submit()" >Logout</a>
+				</li>
 	          <%}else{%>
 	          	<li class="nav-item"><a href="/loginpage" class="nav-link">Login</a></li>
 	          <%}%>
