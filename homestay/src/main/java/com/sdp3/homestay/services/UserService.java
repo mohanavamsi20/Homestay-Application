@@ -2,6 +2,7 @@ package com.sdp3.homestay.services;
 
 import com.sdp3.homestay.entity.User;
 import com.sdp3.homestay.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -19,14 +20,14 @@ public class UserService {
         return users;
     }
 
-    public List<User> getUserbyId(String username){
-        List<User> users = userRepository.findByUsername(username);
+    public User getUserbyId(String username){
+        User users = userRepository.findByUsername(username);
         return users;
     }
 
     public boolean findUsername(String username){
-        List<User> user = userRepository.findByUsername(username);
-        if(user.isEmpty()){
+        User user = userRepository.findByUsername(username);
+        if(user == null){
             return false;
         }
         return true;
@@ -56,8 +57,9 @@ public class UserService {
     public void saveUsers(User user) {
     	userRepository.save(user);
     }
-
-    public void update(User user,String username){
-        userRepository.save(user);
+    
+    public User getUserdetails(String uname){
+        User u1 = userRepository.findByUsername(uname);
+        return u1;
     }
 }

@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.sdp3.homestay.entity.User;
-import java.util.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,29 +57,41 @@ public class HomeController {
 	public ModelAndView profile(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
 		HttpSession session = request.getSession();
 		String user = (String) session.getAttribute("username");
-		List<User> users = userServices.getUserbyId(user);
+		User users = userServices.getUserbyId(user);
 		if(user==null) {
     		return new ModelAndView("redirect:/loginpage");
     	}
     	else {
     		ModelAndView mv = new ModelAndView();
-    		for (User u : users) {
-        		mv.addObject("username",u.getUsername());
-        		mv.addObject("name",u.getName());
-        		mv.addObject("email",u.getEmail());
-        		mv.addObject("password",u.getPassword());
-        		mv.addObject("phone",u.getPhone());
-			}
+    		mv.addObject("username",users.getUsername());
+			mv.addObject("name",users.getName());
+			mv.addObject("email",users.getEmail());
+			mv.addObject("password",users.getPassword());
+			mv.addObject("phone",users.getPhone());
     		mv.setViewName("profile");
     		return mv;
     	}
 	}
 
-	@GetMapping("/rooms")
+	@GetMapping("/bookrooms")
 	public ModelAndView rooms(){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("rooms");
 		return mv;
+	}
+
+	@GetMapping("/addroom")
+	public ModelAndView listrooms(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		HttpSession session = request.getSession();
+    	ModelAndView mView = new ModelAndView();
+		if(session.getAttribute("username")==null) {
+			return new ModelAndView("redirect:/loginpage");
+    		
+    	}
+    	else {
+    		mView.setViewName("listroom");
+			return mView;
+    	}
 	}
 
 	@GetMapping("/update")
@@ -93,14 +103,12 @@ public class HomeController {
     	}
     	else {
     		ModelAndView mv = new ModelAndView();
-			List<User> users = userServices.getUserbyId(user);
-			for (User u : users) {
-				mv.addObject("username",u.getUsername());
-				mv.addObject("name",u.getName());
-				mv.addObject("email",u.getEmail());
-				mv.addObject("password",u.getPassword());
-				mv.addObject("phone",u.getPhone());
-			}
+			User users = userServices.getUserbyId(user);
+			mv.addObject("username",users.getUsername());
+			mv.addObject("name",users.getName());
+			mv.addObject("email",users.getEmail());
+			mv.addObject("password",users.getPassword());
+			mv.addObject("phone",users.getPhone());
     		mv.setViewName("updateprofile");
     		return mv;
     	}

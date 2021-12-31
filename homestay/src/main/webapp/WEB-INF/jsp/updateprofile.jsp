@@ -30,6 +30,19 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script>
+      var check = function() {
+        if (document.getElementById('password').value ==
+          document.getElementById('cnfpassword').value) {
+          document.getElementById('message').style.color = 'green';
+          document.getElementById('message').innerHTML = 'matching';
+        } else {
+          document.getElementById('message').style.color = 'red';
+          document.getElementById('message').innerHTML = 'not matching';
+        }
+      }
+    </script>
     <script>
         function myFunction() {
         var x = document.getElementById("password");
@@ -39,6 +52,25 @@
             x.type = "password";
         }
         }
+    </script>
+    <script>
+      $(function() {
+      $("#cnfpassword").blur(function() {
+        var user_pass = $("#password").val();
+        var confirm_user_pass = $("#cnfpassword").val();
+        var enter = $("#enter");
+
+        if (user_pass.length == 0) {
+          enter.prop('disabled', true)
+        } 
+        else if (user_pass == confirm_user_pass) {
+          enter.prop('disabled', false)
+        } 
+        else {
+          enter.prop('disabled', true)
+        }
+      });
+    });
     </script>
 </head>
 <body>
@@ -52,9 +84,8 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="/rooms" class="nav-link">Rooms</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Restaurant</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="/bookrooms" class="nav-link">Book a Room</a></li>
+	              <li class="nav-item"><a href="/addroom" class="nav-link">List a Room</a></li>
                 <% if(session.getAttribute("username")!=null){%>
                     <li class="nav-item active"><a href="/profile" class="nav-link">Profile</a></li>
                     <li class="nav-item">
@@ -86,31 +117,40 @@
         <div class="row">
             <div class="col-lg-8 ftco-animate order-md-last">
                 <div class="comment-form-wrap pt-5">
-                    <form action="/update" class="p-5 bg-light">
+                    <form action="/update" method="POST" class="p-5 bg-light" modelAttribute="userUpdate">
+                        <c:if test="${not empty errorMsg}">
+                          <div class="alert alert-danger" role="alert">${errorMsg}</div>
+                        </c:if>
+                        <c:if test="${not empty successMsg}">
+                          <div class="alert alert-success" role="alert">${successMsg}</div>
+                        </c:if>
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <input type="text" value="${username}" class="form-control" id="username" disabled>
+                            <input type="text" name="username" value="${username}" class="form-control" id="username" readonly>
                         </div>
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" value="${name}" class="form-control" id="name">
+                            <input type="text" name="name" value="${name}" class="form-control" id="name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" value="${email}" class="form-control" id="email" >
+                            <input type="email" name="email" value="${email}" class="form-control" id="email" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" value="${password}" class="form-control" id="password">
+                            <input type="password" name="password" onkeyup='check();' value="${password}" class="form-control" id="password" required>
                             <input type="checkbox" onclick="myFunction()">Show Password
                         </div>
-
                         <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="phone" value="${phone}" class="form-control" id="phone">
+                          <input type="password" name="cnfpassword" id="cnfpassword" onkeyup='check();' class="form-control" placeholder="Confirm Password" required>
+                          <span id='message'></span>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="SUBMIT" class="btn btn-primary py-3 px-5">
+                            <label for="phone">Phone Number</label>
+                            <input type="phone" name="phone" value="${phone}" class="form-control" id="phone" required>
+                        </div>
+                        <div class="form-group">
+                          <input id="enter" disabled="true" type="submit" value="UPDATE" class="btn btn-primary py-3 px-5">
                         </div>
                     </form>
                 </div>

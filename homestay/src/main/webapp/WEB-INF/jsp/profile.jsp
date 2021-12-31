@@ -52,9 +52,8 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="/rooms" class="nav-link">Rooms</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Restaurant</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="/bookrooms" class="nav-link">Book a Room</a></li>
+	          <li class="nav-item"><a href="/addroom" class="nav-link">List a Room</a></li>
                 <% if(session.getAttribute("username")!=null){%>
                     <li class="nav-item active"><a href="/profile" class="nav-link">Profile</a></li>
                     <li class="nav-item">

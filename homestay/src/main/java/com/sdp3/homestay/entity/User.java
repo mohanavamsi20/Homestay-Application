@@ -17,7 +17,7 @@ public class User {
 
     String name;
 
-    @Column(unique = true)
+    @Column(unique = true, updatable = true)
     @Email(message = "Enter the valid Email")
     String email;
 

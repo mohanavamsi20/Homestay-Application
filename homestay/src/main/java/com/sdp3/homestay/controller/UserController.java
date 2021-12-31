@@ -2,8 +2,10 @@ package com.sdp3.homestay.controller;
 import com.sdp3.homestay.entity.User;
 import com.sdp3.homestay.services.UserService;
 
+import antlr.collections.List;
 
 import java.io.IOException;
+import java.security.Provider.Service;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 @Controller
 public class UserController {
@@ -73,17 +76,20 @@ public class UserController {
     }
 
 	@PostMapping("/update")
-	public ModelAndView update(@RequestParam String username,@RequestParam String name,@RequestParam String email,
-	@RequestParam String password,@RequestParam String phone,
-	HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
-		HttpSession session = request.getSession();
-		String user = (String) session.getAttribute("username");
-		User user1 = new User();
-		user1.setName(name);
-		user1.setEmail(email);
-		user1.setPassword(password);
-		user1.setPhone(phone);
-		userService.update(user1, user);
+	public ModelAndView update(@Valid @ModelAttribute("userUpdate") User users,BindingResult result,RedirectAttributes attr,HttpServletRequest request){
+		User u1 = userService.getUserdetails(users.getUsername());
+		if(result.hasErrors()){
+			attr.addFlashAttribute("errorMsg",result.getFieldError().getDefaultMessage());
+			return new ModelAndView("redirect:/update");
+		}
+		u1.setName(users.getName());
+		u1.setEmail(users.getEmail());
+		u1.setPassword(users.getPassword());
+		u1.setPhone(users.getPhone());
+		userService.saveUsers(u1);
+		attr.addFlashAttribute("successMsg","User profile updated successfully");
 		return new ModelAndView("redirect:/update");
 	}
+
+	
 }
