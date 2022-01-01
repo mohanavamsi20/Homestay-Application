@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
- 	<title>HOMESTAY-APPLICATION</title>
+ 	<title>Sojourn-APPLICATION</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -33,7 +33,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="/">Homestay</a>
+	      <a class="navbar-brand" href="/">Sojourn</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -69,7 +69,7 @@
 	          <div class="row no-gutters slider-text align-items-center">
 	          <div class="col-md-8 ftco-animate">
 	          	<div class="text mb-5 pb-5">
-		            <h1 class="mb-3">Homestay</h1>
+		            <h1 class="mb-3">Sojourn</h1>
 		            <h2>More than a hotel... an experience</h2>
 	            </div>
 	          </div>
@@ -83,8 +83,6 @@
 	          <div class="row no-gutters slider-text align-items-center">
 	          <div class="col-md-8 ftco-animate">
 	          	<div class="text mb-5 pb-5">
-		            <h1 class="mb-3">Experience Epic Beauty</h1>
-		            <h2>Homestay Hotel &amp; Resort</h2>
 	            </div>
 	          </div>
 	        </div>
@@ -213,10 +211,10 @@
       <div class="container">
       	<div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 heading-section text-center ftco-animate">
-          	<span class="subheading">Welcome to Homestay Hotel</span>
-            <h2 class="mb-4">A New Vision of Luxury Hotel</h2>
+          	<span class="subheading">Welcome to Sojourn</span>
+            <h2 class="mb-4">A New Vision of House</h2>
           </div>
-        </div>  
+        </div>
         <div class="row d-flex">
           <div class="col-md pr-md-1 d-flex align-self-stretch ftco-animate">
             <div class="media block-6 services py-4 d-block text-center">
@@ -286,8 +284,7 @@
     	<div class="container-fluid px-0">
     		<div class="row no-gutters justify-content-center mb-5 pb-3">
           <div class="col-md-7 heading-section text-center ftco-animate">
-          	<span class="subheading">Homestay Rooms</span>
-            <h2 class="mb-4">Hotel Master's Rooms</h2>
+          	<span class="subheading">Sojourn Rooms</span>
           </div>
         </div>  
     		<div class="row no-gutters">
@@ -295,7 +292,7 @@
     				<div class="room-wrap">
     					<div class="img d-flex align-items-center" style="background-image: url(images/bg_3.jpg);">
     						<div class="text text-center px-4 py-4">
-    							<h2>Welcome to <a href="/">Homestay</a> Hotel</h2>
+    							<h2>Welcome to <a href="/">Sojourn</a></h2>
     							<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
     						</div>
     					</div>
@@ -716,7 +713,7 @@
         <div class="row mb-5">
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Homestay</h2>
+              <h2 class="ftco-heading-2">Sojourn</h2>
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
               <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                 <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
